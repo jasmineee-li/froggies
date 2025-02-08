@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import { useState } from "react";
-import { Answer, Character } from "../types/quiz";
+import { Question, Answer, Character } from "../types/quiz";
 import { questions, characters, results } from "../data/quizData";
 
 export default function Quiz() {
