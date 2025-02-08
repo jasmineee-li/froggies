@@ -14,6 +14,7 @@ export type Question = {
 export type Character = {
   name: string;
   description?: string;
+  imagePath: string;
 };
 
 export type Result = {

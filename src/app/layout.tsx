@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const pixel = Pixelify_Sans({
   weight: "400",
-  // subsets: ["latin"],
+  subsets: ["latin"],
   variable: "--font-pixel",
 });
 
