@@ -18,7 +18,7 @@ export const questions: Question[] = [
     id: 1,
     text: "The Journey Begins...",
     description:
-      "You hop into the mystical Glowshroom Swamp, where fireflies hum ancient tales. Before you are four paths:",
+      "Hello, dear froggie traveler! You've spawned in the mystical Glowshroom Swamp, home of ancient fireflies and unseen dangers. You have a long journey ahead! Before you are four paths. Where do you choose?",
     answers: [
       {
         emoji: "🧙",
@@ -37,7 +37,7 @@ export const questions: Question[] = [
       },
       {
         emoji: "⚔️",
-        text: "A straight, sturdy bridge over a bubbling moat",
+        text: "A wobbly bridge over a bubbling, green moat",
         type: "⚔️",
       },
     ],

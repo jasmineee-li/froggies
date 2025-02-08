@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 
+import Image from "next/image";
 import { useState } from "react";
-import { Question, Answer, Character } from "../types/quiz";
+import { Answer, Character } from "../types/quiz";
 import { questions, characters, results } from "../data/quizData";
 
 export default function Quiz() {
@@ -39,7 +39,7 @@ export default function Quiz() {
     return (
       <button
         onClick={() => setStarted(true)}
-        className="bg-green-500 font-[family-name:var(--font-pixel)] text-white py-4 px-8 rounded-lg transition-transform duration-200 ease-in-out transform hover:scale-105 active:scale-95 max-w-xs w-full"
+        className="bg-[#98D8AA] hover:bg-[#7BC99D] font-[family-name:var(--font-pixel)] text-white py-4 px-8 rounded-lg transition-transform duration-200 ease-in-out transform hover:scale-105 active:scale-95 max-w-xs w-full"
       >
         START
       </button>
@@ -49,18 +49,40 @@ export default function Quiz() {
   if (showResults) {
     const result = calculateResult();
     return (
-      <div className="text-center">
-        <h2 className="text-4xl font-[family-name:var(--font-pixel)] text-green-400 mb-4">
-          {result.type}
-        </h2>
-        <p className="text-2xl mb-4">{result.emoji}</p>
-        <p className="text-xl">{result.description}</p>
+      <div className="max-w-4xl mx-auto">
+        <div className="flex gap-8">
+          <div className="flex-1 text-center">
+            <h2 className="text-4xl font-[family-name:var(--font-pixel)] text-[#98D8AA] mb-4">
+              {result.type}
+            </h2>
+            <p className="text-2xl mb-4">{result.emoji}</p>
+            <p className="text-xl font-[family-name:var(--font-pixel)]">
+              {result.description}
+            </p>
+          </div>
+          {selectedCharacter && (
+            <div className="w-64 flex-shrink-0">
+              <div className="rounded-lg overflow-hidden bg-[#98D8AA]/10 p-4">
+                <Image
+                  src={selectedCharacter.imagePath}
+                  alt={selectedCharacter.name}
+                  width={200}
+                  height={200}
+                  className="rounded-lg"
+                />
+                <p className="text-center mt-2 font-[family-name:var(--font-pixel)] text-[#98D8AA]">
+                  {selectedCharacter.name}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       {currentQuestion === 0 ? (
         <div className="grid grid-cols-2 gap-4">
           {characters.map((char) => (
@@ -70,7 +92,7 @@ export default function Quiz() {
                 setSelectedCharacter(char);
                 setCurrentQuestion(1);
               }}
-              className="flex flex-col items-center bg-green-500 p-4 rounded-lg hover:bg-green-600 transition-colors"
+              className="flex flex-col items-center bg-[#98D8AA] hover:bg-[#7BC99D] p-4 rounded-lg transition-colors"
             >
               <Image
                 src={char.imagePath}
@@ -86,25 +108,43 @@ export default function Quiz() {
           ))}
         </div>
       ) : (
-        <div>
-          <h2 className="text-3xl font-[family-name:var(--font-pixel)] text-green-400 mb-4">
-            {questions[currentQuestion - 1].text}
-          </h2>
-          <p className="mb-6 font-[family-name:var(--font-pixel)]">
-            {questions[currentQuestion - 1].description}
-          </p>
-          <div className="space-y-4">
-            {questions[currentQuestion - 1].answers.map((answer, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswerSelect(answer)}
-                className="w-full text-left bg-green-500 p-4 rounded-lg hover:bg-green-600 transition-colors font-[family-name:var(--font-pixel)]"
-              >
-                <span className="mr-2">{answer.emoji}</span>
-                {answer.text}
-              </button>
-            ))}
+        <div className="flex gap-8">
+          <div className="flex-1">
+            <h2 className="text-3xl font-[family-name:var(--font-pixel)] text-[#98D8AA] mb-4">
+              {questions[currentQuestion - 1].text}
+            </h2>
+            <p className="mb-6 font-[family-name:var(--font-pixel)]">
+              {questions[currentQuestion - 1].description}
+            </p>
+            <div className="space-y-4">
+              {questions[currentQuestion - 1].answers.map((answer, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswerSelect(answer)}
+                  className="w-full text-left bg-[#98D8AA] hover:bg-[#7BC99D] p-4 rounded-lg transition-colors font-[family-name:var(--font-pixel)]"
+                >
+                  <span className="mr-2">{answer.emoji}</span>
+                  {answer.text}
+                </button>
+              ))}
+            </div>
           </div>
+          {selectedCharacter && (
+            <div className="w-64 flex-shrink-0">
+              <div className="rounded-lg overflow-hidden bg-[#98D8AA]/10 p-4">
+                <Image
+                  src={selectedCharacter.imagePath}
+                  alt={selectedCharacter.name}
+                  width={200}
+                  height={200}
+                  className="rounded-lg"
+                />
+                {/* <p className="text-center mt-2 font-[family-name:var(--font-pixel)] text-[#98D8AA]">
+                  {selectedCharacter.name}
+                </p> */}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
