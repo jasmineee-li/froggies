@@ -19,14 +19,14 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  cursor: url("/cursor.png"), auto;
+  cursor: url("/cursor2.png"), auto;
   /* The numbers (16 16) represent the cursor hotspot (click point) 
      They should be half the width/height of your cursor image */
 }
 
 /* Basic cursor for all elements */
 * {
-  cursor: url("/cursor.png") 16 16, pointer;
+  cursor: url("/cursor2.png") 16 16, pointer;
 }
 
 /* Add after your existing styles */
@@ -61,5 +61,5 @@ button,
 input[type="submit"],
 input[type="button"],
 input[type="reset"] {
-  cursor: url("/cursor.png") 16 16, pointer; /* Use the same cursor */
+  cursor: url("/cursor2.png") 16 16, pointer; /* Use the same cursor */
 }
